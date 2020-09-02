@@ -1,6 +1,6 @@
 # FROST-Benchmark
 
-A set of tools to run load-tests on a SensorThings API compatible service.
+A set of tools to run load-tests on a service implementing [SensorThingsAPI Version 1.1 Draft](https://portal.ogc.org/files/92752).
 
 ## Use
 
