@@ -1,6 +1,6 @@
-# FROST-Benchmark
+# FROST-Benchmark [![DOI](https://zenodo.org/badge/251536677.svg)](https://zenodo.org/badge/latestdoi/251536677)
 
-A set of tools to run load-tests on a service implementing [SensorThingsAPI Version 1.1 Draft](https://portal.ogc.org/files/92752).
+A set of tools to run load-tests on a service implementing [SensorThingsAPI Version 1.1 Draft](https://portal.ogc.org/files/92752). 
 
 ## Use
 
