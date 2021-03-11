@@ -1,0 +1,53 @@
+{
+	"initialize": {
+		"SensorCluster_1": {
+			"SENSORS": 30,
+			"WORKERS": 10
+		}
+	},
+	"sequence": [
+		{
+			"seq": 1,
+			"duration": 6000,
+			"info": "hour 700-800",
+			"SensorCluster_1": {
+				"PERIOD": 100
+			}
+		},
+		{
+			"seq": 2,
+			"duration": 6000,
+			"SensorCluster_1": {
+				"PERIOD": 90
+			}
+		},
+		{
+			"seq": 3,
+			"duration": 6000,
+			"SensorCluster_1": {
+				"PERIOD": 80
+			}
+		},
+		{
+			"seq": 4,
+			"duration": 6000,
+			"SensorCluster_1": {
+				"PERIOD": 70
+			}
+		},
+		{
+			"seq": 5,
+			"duration": 6000,
+			"SensorCluster_1": {
+				"PERIOD": 60
+			}
+		},
+		{
+			"seq": 6,
+			"duration": 6000,
+			"SensorCluster_1": {
+				"PERIOD": 50
+			}
+		}
+	]
+}

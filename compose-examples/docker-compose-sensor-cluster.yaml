@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  sensorcluster1:
+    image: fraunhoferiosb/sensorcluster:latest
+    environment:
+      - NAME=SensorCluster_1
+      - BASE_URL=${FROST_SERVER}
+      - RESULT_URL=${FROST_SERVER}
+      - BROKER=${MQTT_BROKER}
+      - SESSION=0001
+      - WORKERS=10
+      - SENSORS=50
+      - PERIOD=1000
+
+
+
