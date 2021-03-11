@@ -7,9 +7,12 @@ docker-compose up
 ------------------------------------------
 ------------------------------ start image
 
-docker run -d fraunhoferiosb/sensorcluster:0.0.1-SNAPSHOT
-docker run fraunhoferiosb/streamprocessor:0.0.1-SNAPSHOT
-docker run -i fraunhoferiosb/benchmarkcontroller:0.0.1-SNAPSHOT
+docker run -d fraunhoferiosb/sensorcluster:latest
+docker run fraunhoferiosb/streamprocessor:latest
+docker run -i fraunhoferiosb/benchmarkcontroller:latest
+
+java -jar SensorCluster/target/SensorCluster-1.1-SNAPSHOT-jar-with-dependencies.jar
+java -jar BenchmarkController/target/BenchmarkController-1.1-SNAPSHOT-jar-with-dependencies.jar
 
 
 ------------------------------------------
