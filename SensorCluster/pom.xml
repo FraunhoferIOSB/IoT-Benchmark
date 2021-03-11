@@ -87,7 +87,7 @@
 				<configuration>
 					<repository>${docker-image-name}</repository>
 					<buildArgs>
-						<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+						<JAR_FILE>${project.build.finalName}-jar-with-dependencies.jar</JAR_FILE>
 					</buildArgs>
 				</configuration>
 				<dependencies>
