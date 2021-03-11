@@ -9,5 +9,6 @@ ENV WORKERS 10
 ENV COVERAGE 50
 ENV POSTDELAY 1
 
-ADD target/SubscriberCluster-0.0.1-SNAPSHOT-jar-with-dependencies.jar ./frostbenchmark.jar
+ADD target/${JAR_FILE} ./frostbenchmark.jar
 CMD ["/usr/bin/java", "-jar", "./frostbenchmark.jar"]
+
