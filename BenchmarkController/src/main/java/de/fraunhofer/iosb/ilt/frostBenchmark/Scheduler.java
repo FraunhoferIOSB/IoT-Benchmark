@@ -87,7 +87,10 @@ public class Scheduler {
 			run = sequence.get(i);
 			Long duration = run.get("duration").asLong();
 			Long seqId = run.get("seq").asLong();
-			String info = run.get("info").toString();
+			String info = "undefined";
+			if (run.get("info") != null) {
+				run.get("info").toString();
+			}
 			LOGGER.info("#----------------------------------------------------");
 			LOGGER.info("#");
 			LOGGER.info("run experiment " + seqId + " for " + duration + " msec: " + info);
