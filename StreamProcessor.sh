@@ -17,4 +17,4 @@ export WORKERS=20
 # msec delay between observations
 export POSTDELAY=10
 
-java -jar ./StreamProcessor/target/StreamProcessor-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+java -jar ./StreamProcessor/target/StreamProcessor-1.1-SNAPSHOT-jar-with-dependencies.jar

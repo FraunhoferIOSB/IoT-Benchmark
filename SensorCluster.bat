@@ -3,7 +3,7 @@ set NAME=SensorCluster_High
 
 REM URL to be used for creating, subscribing and reading data
 set BASE_URL=http://localhost:8080/FROST-Server/v1.0/
-set RESULT_URL=https://frost-server-hzg.docker01.ilt-dmz.iosb.fraunhofer.de/v1.0
+set RESULT_URL=ttp://localhost:8080/FROST-Server/v1.0/
 
 REM mqtt broker address
 REM set BROKER=192.168.99.100
@@ -20,4 +20,4 @@ set PERIOD=50
 
 set SENSORS=10
 
-java -jar .\SensorCluster\target\SensorCluster-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+java -jar .\SensorCluster\target\SensorCluster-1.1-SNAPSHOT-jar-with-dependencies.jar

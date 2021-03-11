@@ -15,4 +15,4 @@ export SESSION=0815
 export COVERAGE=50
 
 
-java -jar ./SubscriberCluster/target/SubscriberCluster-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+java -jar ./SubscriberCluster/target/SubscriberCluster-1.1-SNAPSHOT-jar-with-dependencies.jar

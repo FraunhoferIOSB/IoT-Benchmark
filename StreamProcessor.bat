@@ -17,4 +17,4 @@ set WORKERS=10
 REM msec delay between observations
 set POSTDELAY=1000
 
-java -jar .\StreamProcessor\target\StreamProcessor-0.0.1-SNAPSHOT-jar-with-dependencies.jar
+java -jar .\StreamProcessor\target\StreamProcessor-1.1-SNAPSHOT-jar-with-dependencies.jar
