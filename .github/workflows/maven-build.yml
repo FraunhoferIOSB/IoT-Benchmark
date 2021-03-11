@@ -40,7 +40,7 @@ jobs:
 
     - name: Build Docker Images
       run: |
-        mvn -B dockerfile:build -pl FROST-Server.HTTP,FROST-Server.MQTT,FROST-Server.MQTTP
+        mvn -B dockerfile:build -pl StreamProcessor,SubscriberCluster,SensorCluster,BenchmarkController,AnalyticsCluster
 
     - name: Push Docker Image - Tagged Commit
       if: startsWith(github.ref, 'refs/tags/')
@@ -50,8 +50,8 @@ jobs:
       run: |
         export DOCKER_TAG=$(mvn -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive exec:exec -q)
         echo "Tagging and Pushing ${DOCKER_TAG}"
-        mvn -B dockerfile:tag@tag-version -pl FROST-Server.HTTP,FROST-Server.MQTT,FROST-Server.MQTTP
-        mvn -B dockerfile:push@push-version -Ddockerfile.useMavenSettingsForAuth=true -pl FROST-Server.HTTP,FROST-Server.MQTT,FROST-Server.MQTTP --settings maven-ci-settings.xml
+        mvn -B dockerfile:tag@tag-version -pl StreamProcessor,SubscriberCluster,SensorCluster,BenchmarkController,AnalyticsCluster
+        mvn -B dockerfile:push@push-version -Ddockerfile.useMavenSettingsForAuth=true -pl StreamProcessor,SubscriberCluster,SensorCluster,BenchmarkController,AnalyticsCluster --settings maven-ci-settings.xml
 
     - name: Push Docker Images - Master branch
       if: github.ref == 'refs/heads/master'
@@ -61,10 +61,10 @@ jobs:
       run: |
         export DOCKER_TAG=$(mvn -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive exec:exec -q)
         echo "Tagging and Pushing ${DOCKER_TAG}"
-        mvn -B dockerfile:tag@tag-version -pl FROST-Server.HTTP,FROST-Server.MQTT,FROST-Server.MQTTP
-        mvn -B dockerfile:push@push-version -Ddockerfile.useMavenSettingsForAuth=true -pl FROST-Server.HTTP,FROST-Server.MQTT,FROST-Server.MQTTP --settings maven-ci-settings.xml
+        mvn -B dockerfile:tag@tag-version -pl StreamProcessor,SubscriberCluster,SensorCluster,BenchmarkController,AnalyticsCluster
+        mvn -B dockerfile:push@push-version -Ddockerfile.useMavenSettingsForAuth=true -pl StreamProcessor,SubscriberCluster,SensorCluster,BenchmarkController,AnalyticsCluster --settings maven-ci-settings.xml
         echo "Pushing latest"
-        mvn -B dockerfile:push@push-latest -Ddockerfile.useMavenSettingsForAuth=true -pl FROST-Server.HTTP,FROST-Server.MQTT,FROST-Server.MQTTP --settings maven-ci-settings.xml
+        mvn -B dockerfile:push@push-latest -Ddockerfile.useMavenSettingsForAuth=true -pl StreamProcessor,SubscriberCluster,SensorCluster,BenchmarkController,AnalyticsCluster --settings maven-ci-settings.xml
 
     - name: Push Docker Image - Other branch
       if: startsWith(github.ref, 'refs/heads/develop')
@@ -75,5 +75,5 @@ jobs:
         export version=$(mvn -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive exec:exec -q)
         export DOCKER_TAG=${GITHUB_REF:11}-${version}
         echo "Tagging and Pushing ${DOCKER_TAG}"
-        mvn -B dockerfile:tag@tag-version -pl FROST-Server.HTTP,FROST-Server.MQTT,FROST-Server.MQTTP
-        mvn -B dockerfile:push@push-version -Ddockerfile.useMavenSettingsForAuth=true -pl FROST-Server.HTTP,FROST-Server.MQTT,FROST-Server.MQTTP --settings maven-ci-settings.xml
+        mvn -B dockerfile:tag@tag-version -pl StreamProcessor,SubscriberCluster,SensorCluster,BenchmarkController,AnalyticsCluster
+        mvn -B dockerfile:push@push-version -Ddockerfile.useMavenSettingsForAuth=true -pl StreamProcessor,SubscriberCluster,SensorCluster,BenchmarkController,AnalyticsCluster --settings maven-ci-settings.xml
