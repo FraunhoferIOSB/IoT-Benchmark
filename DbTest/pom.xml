@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>de.fraunhofer.iosb.FROST-Benchmark</groupId>
 		<artifactId>FROST-BenchmarkParent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<version>1.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>DbTest</artifactId>
 	<name>Benchmark.DbTest</name>

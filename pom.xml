@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.fraunhofer.iosb.FROST-Benchmark</groupId>
 	<artifactId>FROST-BenchmarkParent</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>FROST-Benchmark</name>
 	<description>Collection of Benchmark modules</description>
