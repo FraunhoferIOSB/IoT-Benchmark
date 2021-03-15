@@ -10,7 +10,7 @@ services:
       - BROKER=${MQTT_BROKER}
       - SESSION=0001
       - WORKERS=10
-      - SENSORS=50
+      - SENSORS=30
       - PERIOD=1000
 
 
