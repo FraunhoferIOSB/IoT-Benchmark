@@ -78,7 +78,7 @@ public class Scheduler {
 		}
 
 		JsonNode initProperties = scriptTree.get("initialize");
-		LOGGER.info("initialize experiment: " + initProperties.toString());
+		LOGGER.info("initialize experiment: {}", initProperties);
 		sendCommands(initProperties, STATUS.INITIALIZE);
 
 		JsonNode sequence = scriptTree.get("sequence");
@@ -87,14 +87,17 @@ public class Scheduler {
 			run = sequence.get(i);
 			Long duration = run.get("duration").asLong();
 			Long seqId = run.get("seq").asLong();
-			String info = "undefined";
+			String info = null;
 			if (run.get("info") != null) {
-				run.get("info").toString();
+				info = run.get("info").toString();
 			}
 			LOGGER.info("#----------------------------------------------------");
 			LOGGER.info("#");
-			LOGGER.info("run experiment " + seqId + " for " + duration + " msec: " + info);
-			LOGGER.info("using settings: " + run.toString());
+			LOGGER.info("run experiment {} for {} msec", seqId, duration);
+			if (info != null) {
+				LOGGER.info(info);
+			}
+			LOGGER.info("using settings: {}", run);
 
 			sendCommands(run, STATUS.RUNNING);
 			LOGGER.info("#");
