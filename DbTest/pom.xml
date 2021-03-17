@@ -11,8 +11,9 @@
 
 	<properties>
 		<mainClass>de.fraunhofer.iosb.ilt.dbtest.RunTests</mainClass>
+        <!-- <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source> -->
 	</properties>
-
 
 	<build>
 		<plugins>
