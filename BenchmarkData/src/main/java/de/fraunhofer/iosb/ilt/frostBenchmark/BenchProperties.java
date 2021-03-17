@@ -14,6 +14,9 @@ public class BenchProperties {
 	public static final String TAG_PROXYHOST = "proxyhost";
 	public static final String TAG_PROXYPORT = "proxyport";
 
+	public static final String TAG_SCRIPT = "SCRIPT";
+	public static final String DFLT_SCRIPT = "script.json";
+
 	public static final String TAG_TIMEOUT = "timeout";			// not used
 	public static final int DFLT_TIMEOUT = 10000;
 
@@ -40,6 +43,7 @@ public class BenchProperties {
 
 	public static final String TAG_WORKERS = "WORKERS";			// number of worker threads used 
 	public static final int DFLT_WORKERS = 10;
+	
 
 	public static final String TAG_STATUS = "status";			// benchmark status
 
