@@ -8,13 +8,8 @@
 	"sequence": [
 		{
 			"seq": 1,
-			"duration": 20000,
-			"info": "100 Sensoren at 1 Hz = 100 Observertions/sec",
-			"SensorCluster_1": {
-				"PERIOD": 1000,
-				"SENSORS": 100,
-				"WORKERS": 100
-				}
+			"duration": 5000,
+			"info": "Waiting for initialisation."
 		},
 		{
 			"seq": 2,
@@ -24,7 +19,7 @@
 				"PERIOD": 500,
 				"SENSORS": 100,
 				"WORKERS": 100
-				}
+			}
 		},
 		{
 			"seq": 3,

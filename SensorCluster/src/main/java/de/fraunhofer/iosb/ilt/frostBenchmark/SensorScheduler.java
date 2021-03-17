@@ -56,13 +56,13 @@ public class SensorScheduler {
 		}
 	}
 
-	private void sendRateObservation (double rate) {
+	private void sendRateObservation(double rate) {
 		try {
 			Datastream ds = SensorCluster.resultData.getDatastream(SensorCluster.resultData.getEnv(BenchData.TAG_NAME, "SensorCluster"));
 			SensorCluster.resultData.service.create(new Observation(rate, ds));
 		} catch (ServiceFailureException exc) {
 			LOGGER.error("Failed to send current observation rate.", exc);
-		}		
+		}
 	}
 
 	public synchronized void initWorkLoad(JsonNode updatedProperties) throws ServiceFailureException, URISyntaxException {
@@ -118,11 +118,23 @@ public class SensorScheduler {
 		if (running) {
 			stopWorkLoad();
 		}
-		running = true;
 		startTime = System.currentTimeMillis();
 
 		int oldPeriod = settings.period;
+		int oldWorkerCount = settings.workers;
+		int oldSensors = settings.sensors;
 		settings.readFromJsonNode(properties);
+
+		if (oldWorkerCount != settings.workers || oldSensors != settings.sensors) {
+			logUpdates(BenchProperties.TAG_WORKERS, oldWorkerCount, settings.workers);
+			logUpdates(BenchProperties.TAG_SENSORS, oldSensors, settings.sensors);
+			LOGGER.info("Re-initialising sensors.");
+			for (DataSource sensor : dsList) {
+				sensor.cancel();
+			}
+			initWorkLoad(properties);
+		}
+		running = true;
 
 		if (properties != null) {
 			logUpdates(BenchProperties.TAG_PERIOD, oldPeriod, settings.period);
@@ -156,7 +168,7 @@ public class SensorScheduler {
 		}
 
 		stopTime = System.currentTimeMillis();
-		
+
 		int entries = 0;
 		for (DataSource sensor : dsList) {
 			entries += sensor.reset();
@@ -170,7 +182,7 @@ public class SensorScheduler {
 		LOGGER.info("Benchmark finished");
 		running = false;
 	}
-	
+
 	public void printStats() {
 		long curTime = System.currentTimeMillis();
 		int entries = 0;
@@ -180,7 +192,7 @@ public class SensorScheduler {
 
 		double rate = 1000.0 * entries / (curTime - startTime);
 		LOGGER.info("==> {} per sec", String.format("%.2f", rate));
-		
+
 		sendRateObservation(rate);
 	}
 
