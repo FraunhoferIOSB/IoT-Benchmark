@@ -102,7 +102,7 @@ public class Controller {
 				// processing the HELP command ---------------------------------------------
 				System.out.println("Base URL      : " + benchData.baseUri.toString());
 				System.out.println("Session Id    : " + benchData.sessionId);
-				System.out.println("run [msec]    : Start all benchmark process with optional parameter time im msec");
+				System.out.println("run [msec]    : Start all benchmark clusters with optional parameter time im msec");
 				System.out.println("script <file> : Start all benchmark script with file name");
 				System.out.println("stop          : Stop all running processes");
 				System.out.println("terminate     : Terminte all running benchmark processes");

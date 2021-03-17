@@ -85,7 +85,6 @@ public class AnalyticsCluster extends MqttHelper implements TimeoutListener {
 		try {
 			msg = parser.readTree(new String(message.getPayload()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			LOGGER.error("can not parse mqtt message", e);
 			System.exit(1);
 		}

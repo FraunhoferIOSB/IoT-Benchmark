@@ -40,7 +40,6 @@ public class StreamProcessor extends MqttHelper {
 	public static void main(String[] args) throws IOException, URISyntaxException, ServiceFailureException {
 		String clientId = "BechmarkProcessor-" + System.currentTimeMillis();
 		boolean cleanSession = true; // Non durable subscriptions
-		String protocol = "tcp://";
 
 		String baseUriStr = BenchProperties.getEnv(BenchData.BASE_URL, "http://localhost:8080/FROST-Server/v1.0/").trim();
 		String resultUriStr = BenchProperties.getEnv(BenchData.TAG_RESULT_URL, baseUriStr).trim();
@@ -73,8 +72,13 @@ public class StreamProcessor extends MqttHelper {
 					nbProcessors++;
 				}
 			}
-			LOGGER.info(nbProcessors + " created out of " + dsCount + " Datastreams (coverage="
+			if (dsCount > 0) {
+				LOGGER.info(nbProcessors + " created out of " + dsCount + " Datastreams (coverage="
 					+ 100 * nbProcessors / dsCount + "[" + benchProperties.coverage + "]");
+			} else {
+				LOGGER.info ("no datastreams found");
+			}
+					
 
 			// subscribeAndWait for benchmark commands
 			String topic = "v1.0/Things(" + benchmarkThing.getId().toString() + ")/properties";
@@ -99,7 +103,6 @@ public class StreamProcessor extends MqttHelper {
 		try {
 			msg = parser.readTree(new String(message.getPayload()));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			LOGGER.error("can not parse mqtt message", e);
 			System.exit(1);
 		}
