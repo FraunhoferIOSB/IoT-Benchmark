@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  sensorcluster1:
+    image: fraunhoferiosb/sensorcluster:latest
+    environment:
+      - NAME=SensorCluster_1
+      - BASE_URL=${FROST_SERVER}
+      - RESULT_URL=${FROST_SERVER}
+      - BROKER=${MQTT_BROKER}
+      - SESSION=0001
+      - WORKERS=10
+      - SENSORS=30
+      - PERIOD=1000
+
+  controller:
+    image: fraunhoferiosb/controller:latest
+    environment: 
+      - NAME=Controller
+      - BASE_URL=${FROST_SERVER}
+      - RESULT_URL=${FROST_SERVER}
+      - BROKER=${MQTT_BROKER}
+      - SESSION=0001
+      - SCRIPT=/root/conf/script-sensor-cluster-ramp-up.json
+    volumes: 
+      - ${CONTROLLER_SCRIPTS}:/root/conf
+
+
+
+
