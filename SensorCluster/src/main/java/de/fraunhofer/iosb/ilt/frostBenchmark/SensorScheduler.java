@@ -163,7 +163,7 @@ public class SensorScheduler {
 		}
 
 		double rate = 1000.0 * entries / (stopTime - startTime);
-		LOGGER.info("-=> {} entries created per sec", String.format("%.2f", rate));
+		LOGGER.info("==> {} entries created per sec", String.format("%.2f", rate));
 
 		sendRateObservation(rate);
 
@@ -179,7 +179,7 @@ public class SensorScheduler {
 		}
 
 		double rate = 1000.0 * entries / (curTime - startTime);
-		LOGGER.info("-=> {}/s", String.format("%.2f", rate));
+		LOGGER.info("==> {} per sec", String.format("%.2f", rate));
 		
 		sendRateObservation(rate);
 	}

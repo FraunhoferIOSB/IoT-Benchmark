@@ -1,7 +1,6 @@
 package de.fraunhofer.iosb.ilt.frostBenchmark;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import static de.fraunhofer.iosb.ilt.frostBenchmark.BenchProperties.TAG_SESSION;
 import de.fraunhofer.iosb.ilt.sta.ServiceFailureException;
 import de.fraunhofer.iosb.ilt.sta.model.Datastream;
 import de.fraunhofer.iosb.ilt.sta.model.ext.EntityList;
