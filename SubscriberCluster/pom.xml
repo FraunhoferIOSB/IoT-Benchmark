@@ -10,9 +10,6 @@
 	<name>Benchmark.SubscriberCluster</name>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
 		<mainClass>de.fraunhofer.iosb.ilt.frostBenchmark.SubscriberCluster</mainClass>
 		<docker-image-name>${docker-registry}/subscribercluster</docker-image-name>
 	</properties>

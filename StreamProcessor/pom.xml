@@ -10,9 +10,6 @@
 	<name>Benchmark.StreamProcessor</name>
 
 	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
 		<mainClass>de.fraunhofer.iosb.ilt.frostBenchmark.StreamProcessor</mainClass>
 		<docker-image-name>${docker-registry}/streamprocessor</docker-image-name>
 	</properties>
