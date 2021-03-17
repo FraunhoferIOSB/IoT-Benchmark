@@ -33,9 +33,10 @@ public class Scheduler {
 		FileReader fr;
 		try {
 			fr = new FileReader(scheduleFile);
+			LOGGER.info("reading file {}", fr);
 			scriptTree = mapper.readTree(fr);
 		} catch (IOException e) {
-			LOGGER.error("Failed to load json.", e);
+			LOGGER.error("Failed to load file", e);
 		}
 	}
 
