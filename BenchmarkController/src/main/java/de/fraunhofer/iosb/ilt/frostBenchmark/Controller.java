@@ -34,8 +34,16 @@ public class Controller {
 		
 		Scheduler scriptScheduler = new Scheduler();
 
+		String script = BenchProperties.getEnv(BenchProperties.TAG_SCRIPT, null);
+		if (script != null) {
+			LOGGER.info("running script {}", script);
+			scriptScheduler.readSchedule(script);
+			scriptScheduler.runScript();
+			System.exit(0);
+		}
+
 		if (args.length > 0) {
-			System.out.println("running script " + args[0]);
+			LOGGER.info("running script {}", args[0]);
 			scriptScheduler.readSchedule(args[0]);
 			scriptScheduler.runScript();
 			System.exit(0);
