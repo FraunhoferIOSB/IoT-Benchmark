@@ -7,7 +7,7 @@ set RESULT_URL=ttp://localhost:8080/FROST-Server/v1.0/
 
 REM mqtt broker address
 REM set BROKER=192.168.99.100
-set BROKER=localhost
+REM set BROKER=localhost
 
 REM Benchmark Session Identifier within Benchmark thing to be used
 set SESSION=0001
