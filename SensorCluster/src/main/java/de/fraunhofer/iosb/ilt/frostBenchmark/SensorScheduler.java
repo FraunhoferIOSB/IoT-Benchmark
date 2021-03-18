@@ -118,7 +118,6 @@ public class SensorScheduler {
 		if (running) {
 			stopWorkLoad();
 		}
-		startTime = System.currentTimeMillis();
 
 		int oldPeriod = settings.period;
 		int oldWorkerCount = settings.workers;
@@ -135,6 +134,7 @@ public class SensorScheduler {
 			initWorkLoad(properties);
 		}
 		running = true;
+		startTime = System.currentTimeMillis();
 
 		if (properties != null) {
 			logUpdates(BenchProperties.TAG_PERIOD, oldPeriod, settings.period);

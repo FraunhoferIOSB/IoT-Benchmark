@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -79,6 +80,7 @@ public class Scheduler {
 		}
 
 		JsonNode initProperties = scriptTree.get("initialize");
+		maybeDelay(initProperties.get("delay"));
 		LOGGER.info("initialize experiment: {}", initProperties);
 		sendCommands(initProperties, STATUS.INITIALIZE);
 
@@ -109,6 +111,20 @@ public class Scheduler {
 		LOGGER.info("finished");
 	}
 
+	private void maybeDelay(JsonNode delay) {
+		if (delay == null)
+			return;
+		long sleepTime = delay.asLong(0);
+		if (sleepTime <= 0)
+			return;
+		LOGGER.info("Delaying for {} ms to give the Sensors some time to wake up.", sleepTime);
+		try {
+			Thread.sleep(sleepTime);
+		} catch (InterruptedException ex) {
+			// It's fine
+		}
+	}
+	
 	public void sendCommands(STATUS status) throws ServiceFailureException {
 		sendCommands(new HashMap<>(), status);
 	}
