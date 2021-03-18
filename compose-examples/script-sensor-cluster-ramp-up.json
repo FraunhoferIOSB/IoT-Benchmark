@@ -19,7 +19,7 @@
 		},
 		{
 			"seq": 2,
-			"duration": 20000,
+			"duration": 30000,
 			"info": "100 Sensoren at 2 Hz = 200 Observertions/sec",
 			"SensorCluster_1": {
 				"PERIOD": 500,
@@ -29,7 +29,7 @@
 		},
 		{
 			"seq": 3,
-			"duration": 20000,
+			"duration": 30000,
 			"info": "100 Sensoren at 3,33 Hz = 333 Observertions/sec",
 			"SensorCluster_1": {
 				"PERIOD": 300
@@ -37,7 +37,7 @@
 		},
 		{
 			"seq": 4,
-			"duration": 20000,
+			"duration": 30000,
 			"info": "100 Sensoren at 5 Hz = 500 Observertions/sec",
 			"SensorCluster_1": {
 				"PERIOD": 200
@@ -45,7 +45,7 @@
 		},
 		{
 			"seq": 5,
-			"duration": 20000,
+			"duration": 30000,
 			"info": "100 Sensoren at 10 Hz = 1000 Observertions/sec",
 			"SensorCluster_1": {
 				"PERIOD": 100
