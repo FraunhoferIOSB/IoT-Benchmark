@@ -43,6 +43,8 @@ and start the tools. Each of these components needs to run in its own terminal.
 
 3. Run a test. In the Controller, give the command `run 5000`. This will start the SensorCluster, and let it run for 5 seconds.
 
+A complete list of all load component settings can be found in the [settings documentation section](docs/settings.adoc). 
+
 ## License
 
 Copyright (C) 2016 Fraunhofer Institut IOSB, Fraunhoferstr. 1, D 76131
