@@ -80,9 +80,10 @@ public class Scheduler {
 		}
 
 		JsonNode initProperties = scriptTree.get("initialize");
-		maybeDelay(initProperties.get("delay"));
+		maybeDelay(initProperties.get("preDelay"));
 		LOGGER.info("initialize experiment: {}", initProperties);
 		sendCommands(initProperties, STATUS.INITIALIZE);
+		maybeDelay(initProperties.get("postDelay"));
 
 		JsonNode sequence = scriptTree.get("sequence");
 		JsonNode run = null;
@@ -112,11 +113,13 @@ public class Scheduler {
 	}
 
 	private void maybeDelay(JsonNode delay) {
-		if (delay == null)
+		if (delay == null) {
 			return;
+		}
 		long sleepTime = delay.asLong(0);
-		if (sleepTime <= 0)
+		if (sleepTime <= 0) {
 			return;
+		}
 		LOGGER.info("Delaying for {} ms to give the Sensors some time to wake up.", sleepTime);
 		try {
 			Thread.sleep(sleepTime);
@@ -124,7 +127,7 @@ public class Scheduler {
 			// It's fine
 		}
 	}
-	
+
 	public void sendCommands(STATUS status) throws ServiceFailureException {
 		sendCommands(new HashMap<>(), status);
 	}

@@ -1,10 +1,11 @@
 {
 	"initialize": {
-		"delay": 5000,
+		"preDelay": 5000,
 		"SensorCluster_1": {
 			"SENSORS": 100,
 			"WORKERS": 100
-		}
+		},
+		"postDelay": 5000
 	},
 	"sequence": [
 		{
@@ -12,9 +13,7 @@
 			"duration": 10000,
 			"info": "100 Sensoren at 1 Hz = 100 Observertions/sec",
 			"SensorCluster_1": {
-				"PERIOD": 1000,
-				"SENSORS": 100,
-				"WORKERS": 100
+				"PERIOD": 1000
 			}
 		},
 		{
@@ -22,9 +21,7 @@
 			"duration": 30000,
 			"info": "100 Sensoren at 2 Hz = 200 Observertions/sec",
 			"SensorCluster_1": {
-				"PERIOD": 500,
-				"SENSORS": 100,
-				"WORKERS": 100
+				"PERIOD": 500
 			}
 		},
 		{
