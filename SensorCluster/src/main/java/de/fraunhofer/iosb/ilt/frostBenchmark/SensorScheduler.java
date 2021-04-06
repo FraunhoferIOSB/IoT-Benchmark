@@ -50,6 +50,13 @@ public class SensorScheduler {
 		return newVal;
 	}
 
+	private boolean logUpdates(String name, boolean oldVal, boolean newVal) {
+		if (oldVal != newVal) {
+			LOGGER.info("Updating value of {} from {} to {}.", name, oldVal, newVal);
+		}
+		return newVal;
+	}
+
 	private void warnIfChanged(String name, int oldVal, int newVal) {
 		if (oldVal != newVal) {
 			LOGGER.warn("Changing parameter {} is not supported, using old value {} instead of new value {}.", name, oldVal, newVal);
@@ -73,6 +80,7 @@ public class SensorScheduler {
 		int oldSensors = settings.sensors;
 		int oldPeriod = settings.period;
 		int oldJitter = settings.jitter;
+		boolean oldCacheFoi = settings.cacheFoi;
 		settings.readFromJsonNode(updatedProperties);
 
 		LOGGER.debug("Benchmark initializing, starting workers");
@@ -80,6 +88,7 @@ public class SensorScheduler {
 		logUpdates(BenchProperties.TAG_PERIOD, oldPeriod, settings.period);
 		logUpdates(BenchProperties.TAG_JITTER, oldJitter, settings.jitter);
 		logUpdates(BenchProperties.TAG_WORKERS, oldWorkerCount, settings.workers);
+		boolean cachFoi = logUpdates(BenchProperties.TAG_CACHE_FOI, oldCacheFoi, settings.cacheFoi);
 
 		if (oldWorkerCount != settings.workers) {
 			cleanupScheduler(false);
@@ -111,6 +120,9 @@ public class SensorScheduler {
 			LOGGER.info("Done.");
 		}
 
+		for (DataSource sensor : dsList) {
+			sensor.setCacheFoi(cachFoi);
+		}
 		LOGGER.trace("Benchmark initialized");
 	}
 
@@ -122,6 +134,7 @@ public class SensorScheduler {
 		int oldPeriod = settings.period;
 		int oldWorkerCount = settings.workers;
 		int oldSensors = settings.sensors;
+		boolean oldCacheFoi = settings.cacheFoi;
 		settings.readFromJsonNode(properties);
 
 		if (oldWorkerCount != settings.workers || oldSensors != settings.sensors) {
@@ -138,12 +151,14 @@ public class SensorScheduler {
 
 		if (properties != null) {
 			logUpdates(BenchProperties.TAG_PERIOD, oldPeriod, settings.period);
+			logUpdates(BenchProperties.TAG_CACHE_FOI, oldCacheFoi, settings.cacheFoi);
 		}
 
-		LOGGER.info("Starting workload: {} workers, {} sensors, {} delay, {} jitter.", settings.workers, settings.sensors, settings.period, settings.jitter);
+		LOGGER.info("Starting workload: {} workers, {} sensors, {} delay, {} jitter, cacheFoi: {}.", settings.workers, settings.sensors, settings.period, settings.jitter, settings.cacheFoi);
 		double delayPerSensor = ((double) settings.period) / settings.sensors;
 		double currentDelay = 0;
 		for (DataSource sensor : dsList) {
+			sensor.setCacheFoi(settings.cacheFoi);
 			ScheduledFuture<?> handle = sensorScheduler.scheduleAtFixedRate(sensor, (long) currentDelay, settings.period - settings.jitter / 2, TimeUnit.MILLISECONDS);
 			sensor.setSchedulerHandle(handle);
 			currentDelay += delayPerSensor;

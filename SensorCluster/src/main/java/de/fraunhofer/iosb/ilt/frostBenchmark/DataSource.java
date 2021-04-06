@@ -2,6 +2,7 @@ package de.fraunhofer.iosb.ilt.frostBenchmark;
 
 import de.fraunhofer.iosb.ilt.sta.ServiceFailureException;
 import de.fraunhofer.iosb.ilt.sta.model.Datastream;
+import de.fraunhofer.iosb.ilt.sta.model.FeatureOfInterest;
 import de.fraunhofer.iosb.ilt.sta.model.Observation;
 import de.fraunhofer.iosb.ilt.sta.service.SensorThingsService;
 import java.net.URISyntaxException;
@@ -19,9 +20,11 @@ public class DataSource implements Runnable {
 	private long lastTime = 0;
 
 	private Datastream datastream;
+	private FeatureOfInterest foi;
 
 	public Thread myThread = null;
 	private ScheduledFuture<?> schedulerHandle;
+	private boolean cacheFoi = false;
 
 	public DataSource(SensorThingsService sensorThingsService) {
 		service = sensorThingsService;
@@ -53,9 +56,21 @@ public class DataSource implements Runnable {
 		lastTime = System.currentTimeMillis();
 		double observateRate = calculateRate();
 		Observation o = new Observation(observateRate, datastream);
+		if (cacheFoi) {
+			o.setFeatureOfInterest(foi);
+		}
 		createdObsCount++;
 		try {
 			service.create(o);
+			if (cacheFoi && foi == null) {
+				foi = o.getFeatureOfInterest();
+				if (foi == null) {
+					LOGGER.error("Failed to retrieve FoI");
+					cacheFoi = false;
+				} else {
+					foi = foi.withOnlyId();
+				}
+			}
 		} catch (ServiceFailureException exc) {
 			LOGGER.error("Failed to create observation.", exc);
 		}
@@ -91,6 +106,20 @@ public class DataSource implements Runnable {
 			this.cancel();
 		}
 		this.schedulerHandle = schedulerHandle;
+	}
+
+	/**
+	 * @return the cacheFoi
+	 */
+	public boolean isCacheFoi() {
+		return cacheFoi;
+	}
+
+	/**
+	 * @param cacheFoi the cacheFoi to set
+	 */
+	public void setCacheFoi(boolean cacheFoi) {
+		this.cacheFoi = cacheFoi;
 	}
 
 }

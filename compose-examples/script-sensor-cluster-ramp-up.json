@@ -55,6 +55,15 @@
 			"SensorCluster_1": {
 				"PERIOD": 50
 			}
+		},
+		{
+			"seq": 6,
+			"duration": 30000,
+			"info": "100 Sensoren at 20 Hz = 2000 Observertions/sec",
+			"SensorCluster_1": {
+				"PERIOD": 50,
+				"CACHE_FOI": true
+			}
 		}
 	]
 }

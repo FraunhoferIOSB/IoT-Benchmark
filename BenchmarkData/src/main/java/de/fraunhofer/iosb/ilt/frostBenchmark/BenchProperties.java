@@ -23,7 +23,7 @@ public class BenchProperties {
 	public static final String TAG_POSTDELAY = "POSTDELAY";		// not used
 	public static final int DFLT_POSTDELAY = 1000;
 
-	public static final String TAG_COVERAGE = "COVERAGE";		// subscription coverage of datastreams in percentage 
+	public static final String TAG_COVERAGE = "COVERAGE";		// subscription coverage of datastreams in percentage
 	public static final int DFLT_COVERAGE = 100;
 
 	public static final String TAG_PERIOD = "PERIOD";			// delay in ms between two observation posts. defines the insertion rate
@@ -41,9 +41,11 @@ public class BenchProperties {
 	public static final String TAG_ANALYTIC_LOOPS = "ANALYTIC_LOOPS";		// number of analytic calculation cycles
 	public static final int DFLT_ANALYTICS_LOOPS = 20;
 
-	public static final String TAG_WORKERS = "WORKERS";			// number of worker threads used 
+	public static final String TAG_WORKERS = "WORKERS";			// number of worker threads used
 	public static final int DFLT_WORKERS = 10;
-	
+
+	public static final String TAG_CACHE_FOI = "CACHE_FOI";	// number of worker threads used
+	public static final boolean DFLT_CACHE_FOI = false;
 
 	public static final String TAG_STATUS = "status";			// benchmark status
 
@@ -67,6 +69,7 @@ public class BenchProperties {
 	public int analyticLoops = DFLT_ANALYTICS_LOOPS;
 	public int analyticJobs = DFLT_ANALYTICS_JOBS;
 	public int workers = DFLT_WORKERS;
+	public boolean cacheFoi = DFLT_CACHE_FOI;
 
 	public BenchProperties readFromEnvironment() {
 		workers = getEnv(TAG_WORKERS, DFLT_WORKERS);
@@ -75,6 +78,7 @@ public class BenchProperties {
 		period = getEnv(TAG_PERIOD, DFLT_PERIOD);
 		jitter = getEnv(TAG_JITTER, DFLT_JITTER);
 		sensors = getEnv(TAG_SENSORS, DFLT_SENSORS);
+		cacheFoi = getEnv(TAG_CACHE_FOI, DFLT_CACHE_FOI);
 		analyticLoops = getEnv(TAG_ANALYTIC_LOOPS, DFLT_ANALYTICS_LOOPS);
 		analyticJobs = getEnv(TAG_ANALYTIC_JOBS, DFLT_ANALYTICS_JOBS);
 		return this;
@@ -90,6 +94,7 @@ public class BenchProperties {
 		period = getProperty(adds, TAG_PERIOD, period);
 		jitter = getProperty(adds, TAG_JITTER, jitter);
 		sensors = getProperty(adds, TAG_SENSORS, sensors);
+		cacheFoi = getProperty(adds, TAG_CACHE_FOI, cacheFoi);
 		analyticLoops = getProperty(adds, TAG_ANALYTIC_LOOPS, analyticLoops);
 		analyticJobs = getProperty(adds, TAG_ANALYTIC_JOBS, analyticJobs);
 		return this;
@@ -128,6 +133,14 @@ public class BenchProperties {
 		return value.intValue();
 	}
 
+	static public boolean getProperty(JsonNode from, String name, boolean dflt) {
+		JsonNode value = from.get(name);
+		if (value == null || !value.isBoolean()) {
+			return dflt;
+		}
+		return value.asBoolean();
+	}
+
 	public static String getEnv(String name, String deflt) {
 		String value = System.getenv(name);
 		if (value == null) {
@@ -148,5 +161,13 @@ public class BenchProperties {
 			LOGGER.info("Value for {} ({}) was not an Integer", name, value);
 			return deflt;
 		}
+	}
+
+	public static boolean getEnv(String name, boolean deflt) {
+		String value = System.getenv(name);
+		if (value == null) {
+			return deflt;
+		}
+		return Boolean.parseBoolean(value);
 	}
 }

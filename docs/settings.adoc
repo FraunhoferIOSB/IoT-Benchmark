@@ -26,6 +26,7 @@ Beside these common settings, for some cluster components there are some specifi
 | Parameter | Description | Default
 
 | SENSORS | Number of sensor objects to be used. There is a data stream for each sensor where the observations are posted. | 20
+| CACHE_FOI | If true, the first Observation from a Sensor is posted normally, but all subsequent Observations are posted with the explicit FeatureOfInterest retrieved from the first Observation. | false
 |===
 
 
