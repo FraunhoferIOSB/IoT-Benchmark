@@ -62,10 +62,10 @@ public class BenchData {
 
 	public final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(BenchData.class);
 
-	
+
 	public BenchData() {
 	}
-	
+
 	public BenchData initialize(String baseUriStr) {
 
 		name = getEnv(TAG_NAME, DFLT_NAME);
@@ -80,7 +80,7 @@ public class BenchData {
 			LOGGER.debug("Creating SensorThingsService");
 			baseUri = new URL(baseUriStr);
 			service = new SensorThingsService(baseUri);
-			
+
 			PoolingHttpClientConnectionManager conManager = new PoolingHttpClientConnectionManager();
 			conManager.setMaxTotal(500);
 			conManager.setDefaultMaxPerRoute(200);
@@ -88,7 +88,7 @@ public class BenchData {
 					.useSystemProperties()
 					.setConnectionManager(conManager)
 					.build();
-			service.setClient(httpClient);
+			service.setHttpClient(httpClient);
 
 			LOGGER.debug("Creating SensorThingsService done");
 		} catch (MalformedURLException e) {
@@ -123,7 +123,7 @@ public class BenchData {
 	/**
 	 * Get the Thing to be used to control the benchmark components. If the thing is not found, it will be created.
 	 * If it was found before, it will be cached and not searched again.
-	 * 
+	 *
 	 * @return The Benchmark controller thing
 	 */
 	public Thing getBenchmarkThing() {
