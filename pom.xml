@@ -26,7 +26,7 @@
 
 		<annotation-api.version>1.3.2</annotation-api.version>
 		<dockerfile-maven-plugin.version>1.4.13</dockerfile-maven-plugin.version>
-		<frost.client.version>0.36</frost.client.version>
+		<frost.client.version>0.38</frost.client.version>
 		<javax-activation.version>1.1.1</javax-activation.version>
 	</properties>
 
