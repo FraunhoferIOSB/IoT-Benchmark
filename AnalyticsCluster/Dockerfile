@@ -1,4 +1,4 @@
-FROM openjdk:11-jre-slim
+FROM eclipse-temurin:21-alpine
 LABEL maintainer="Reinhard Herzog <reinhard.herzog@iosb.fraunhofer.de>"
 
 ENV BASE_URL http://localhost:8080/FROST-Server/v1.0/
